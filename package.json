@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "node --env-file=.env --watch -r ts-node/register src/index.ts",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "keywords": [],
   "author": "",
