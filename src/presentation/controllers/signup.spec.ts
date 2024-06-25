@@ -7,14 +7,18 @@ interface SutSypes {
   emailValidatorStub: EmailValidator
 }
 
-const makeSut = (): SutSypes => {
+const makeEmailValidator = (): EmailValidator => {
   class EmailValidatorStub implements EmailValidator {
     isValid(email: string): boolean {
       return true
     }
   }
 
-  const emailValidatorStub = new EmailValidatorStub()
+  return new EmailValidatorStub()
+}
+
+const makeSut = (): SutSypes => {
+  const emailValidatorStub = makeEmailValidator()
 
   const sut = new SignUpController(emailValidatorStub)
 
@@ -132,7 +136,7 @@ describe('SignUp Controller', () => {
 
   it('should return 500 if email validator throws', () => {
     const { sut, emailValidatorStub } = makeSut()
-    jest.spyOn(emailValidatorStub, 'isValid').mockImplementation(() => {
+    jest.spyOn(emailValidatorStub, 'isValid').mockImplementationOnce(() => {
       throw new Error('any error')
     })
 
