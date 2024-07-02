@@ -99,4 +99,21 @@ describe('DbAddAcount Usecase', () => {
 
     expect(addAccountRepositoryStub.add).toHaveBeenCalledWith(expected)
   })
+
+  it('shoud throw if AddAccountRepository throws', async () => {
+    const { sut, addAccountRepositoryStub } = makeSut()
+
+    const mockedError = new Error('any_error')
+    jest
+      .spyOn(addAccountRepositoryStub, 'add')
+      .mockRejectedValueOnce(mockedError)
+
+    const accountData = {
+      name: 'any_name',
+      email: 'any_email@mail.com',
+      password: 'any_password',
+    }
+
+    await expect(sut.add(accountData)).rejects.toThrow(mockedError)
+  })
 })
