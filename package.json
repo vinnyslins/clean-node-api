@@ -8,8 +8,8 @@
     "dev": "node --env-file=.env --watch -r ts-node/register src/index.ts",
     "test": "jest --silent --noStackTrace --runInBand",
     "test:verbose": "jest --runInBand",
-    "test:unit": "npm test -- --watch -c jest-unit.config.js",
-    "test:integration": "npm test -- --watch -c jest-integration.config.js",
+    "test:unit": "npm test -- --watch -c jest-unit-config.js",
+    "test:integration": "npm test -- --watch -c jest-integration-config.js",
     "test:ci": "npm test -- --coverage",
     "prepare": "husky"
   },
